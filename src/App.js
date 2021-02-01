@@ -1,25 +1,37 @@
-import logo from './logo.svg';
+
 import './App.css';
 
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
+
+import ApolloProvider from './ApolloProvider'
+import { AuthProvider } from './context/auth'
+import { MessageProvider } from './context/message'
+import GuardRoute from './guards/GuardRoute'
+
+import SignIn from './offline/SignIn';
+import SignUp from './offline/SignUp';
+import Chat from './online/Chat';
+
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  return  (<div className="App">
+    <ApolloProvider>
+      <AuthProvider>
+        <Router>
+          <Switch>
+            <GuardRoute path="/login" component={SignIn} guest />
+            <GuardRoute path="/register" component={SignUp} guest />
+            <MessageProvider>
+              <GuardRoute path="/" component={Chat} authenticated  />
+            </MessageProvider>
+          </Switch>
+        </Router>
+      </AuthProvider>
+    </ApolloProvider>
+    </div>);
 }
 
 export default App;

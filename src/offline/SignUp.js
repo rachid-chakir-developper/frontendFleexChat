@@ -77,7 +77,7 @@ export default function SignUp(props) {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign up
+          Inscription
         </Typography>
         <form className={classes.form} noValidate onSubmit={submitRegisterForm}>
           <Grid container spacing={2}>
@@ -136,13 +136,13 @@ export default function SignUp(props) {
             color="primary"
             className={classes.submit}
           >
-            Sign Up
+            S'inscrire
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
                 <LinkRoute to="/login">
                     <Link variant="body2">
-                        Already have an account? Sign in
+                        Vous avez déjà un compte ? Connectez vous
                     </Link>
                 </LinkRoute>
             </Grid>

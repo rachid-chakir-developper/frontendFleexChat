@@ -7,6 +7,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import TextField from '@material-ui/core/TextField';
 import SendIcon from '@material-ui/icons/Send';
+import Grid from '@material-ui/core/Grid';
 import { gql, useMutation } from '@apollo/client'
 
 const useStyles = makeStyles((theme) => ({
@@ -78,28 +79,32 @@ export default function SendForm({selectedConversation}) {
       <AppBar position="fixed" color="primary" className={classes.appBar}>
         <Toolbar>
             <div className={classes.grow} />
-          <div className={classes.grow} />
-          <div className={classes.grow} />
           {selectedConversation ?
               <form className={classes.form} noValidate autoComplete="off"
               onClick={submitMessage}>
-                <TextField
-                    className={classes.field}
-                    id="outlined-multiline-static"
-                    multiline
-                    rows={1}
-                    variant="outlined"
-                    value={content}
-                    onChange={(e) => setContent(e.target.value)}
-                />
-                
-                <IconButton type="submit" color="inherit">
-                  <SendIcon />
-                </IconButton>
+                <Grid container spacing={3}>
+                  <Grid item xs={11}>
+                  <TextField
+                      className={classes.field}
+                      id="outlined-multiline-static"
+                      multiline
+                      rows={1}
+                      variant="outlined"
+                      value={content}
+                      onChange={(e) => setContent(e.target.value)}
+                  />
+                  </Grid>
+                  <Grid item xs={1}>
+                  <IconButton type="submit" color="inherit">
+                    <SendIcon />
+                  </IconButton>
+                  </Grid>
+                </Grid>
               </form>
               : ''
             }
           
+          <div className={classes.grow} />
         </Toolbar>
       </AppBar>
     </React.Fragment>
